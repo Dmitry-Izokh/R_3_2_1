@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,10 @@ namespace R_3_2_1
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
 
-            List<FamilyInstance> fInstances = new FilteredElementCollector(doc)
+            List<Duct> fInstances = new FilteredElementCollector(doc)
                 .OfCategory(BuiltInCategory.OST_DuctCurves)
                 .WhereElementIsNotElementType()
-                .Cast<FamilyInstance>()
+                .Cast<Duct>()
                 .ToList();
 
             TaskDialog.Show("Количество воздуховодов", fInstances.Count.ToString());
@@ -29,3 +30,4 @@ namespace R_3_2_1
         }
     }
 }
+// Внес правки по классу Duct
